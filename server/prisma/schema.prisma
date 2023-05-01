@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:password@localhost:3306/suchatra"
+}
+
+model Item {
+  id          Int     @id @default(autoincrement())
+  name        String
+  sku         String  @unique
+  description String?
+  price       Float
+  color       String?
+  events      Event[] @relation("ItemEvents")
+}
+
+model Event {
+  id        Int         @id @default(autoincrement())
+  notes     String
+  timestamp DateTime    @default(now())
+  location  String?
+  custodian String?
+  status    EventStatus
+  item      Item?       @relation("ItemEvents", fields: [itemId], references: [id])
+  itemId    Int?
+}
+
+enum EventStatus {
+  CREATED
+  IN_TRANSIT
+  DELIVERED
+  RETURNED
+  DAMAGED
+  LOST
+}

@@ -1,0 +1,32 @@
+{
+  "name": "suchatra-server",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn prisma:dev && nodemon src/index.ts",
+    "start": "ts-node src/index.ts",
+    "prisma:dev": "yarn prisma generate && yarn prisma migrate dev",
+    "prisma:seed": "yarn prisma db seed"
+  },
+  "dependencies": {
+    "@prisma/client": "4.13.0",
+    "cors": "^2.8.5",
+    "express": "4.18.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "4.17.17",
+    "@types/node": "18.16.3",
+    "nodemon": "^2.0.22",
+    "prisma": "4.13.0",
+    "ts-node": "10.9.1",
+    "typescript": "4.9.5"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "author": {
+    "name": "Rodgers Tanui",
+    "email": "rtankip@gmail.com"
+  }
+}
