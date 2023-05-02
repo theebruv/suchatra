@@ -1,5 +1,4 @@
 import express from "express";
-import { createEvent } from "../services/event.service";
 import { ItemController } from "../controllers/items.controller";
 
 const router = express.Router();
@@ -39,16 +38,6 @@ router.post("/", async (req, res) => {
 		price: Number(price),
 		sku: Math.random().toString(36).substring(2, 8).toLocaleUpperCase(),
 		color,
-	});
-
-	await createEvent({
-		status: "CREATED",
-		notes: `Item ${item.name} was created`,
-		item: {
-			connect: {
-				id: item.id,
-			},
-		},
 	});
 
 	res.json(item);
