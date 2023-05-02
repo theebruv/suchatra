@@ -1,11 +1,11 @@
+import { EventController } from "./../controllers/events.controller";
 import express from "express";
-
-import { getEvents, getEvent, createEvent, updateEvent, deleteEvent } from "../services/event.service";
 
 const router = express.Router();
 
 router.get("/", async (_, res) => {
-	const events = await getEvents();
+	const controller = new EventController();
+	const events = await controller.getEvents();
 
 	res.json(events);
 });
@@ -13,7 +13,8 @@ router.get("/", async (_, res) => {
 router.get("/:id", async (req, res) => {
 	const { id } = req.params;
 
-	const event = await getEvent(Number(id));
+	const controller = new EventController();
+	const event = await controller.getEvent(Number(id));
 
 	res.json(event);
 });
@@ -21,16 +22,13 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
 	const { notes, location, custodian, status, itemId } = req.body;
 
-	const event = await createEvent({
+	const controller = new EventController();
+	const event = await controller.createEvent({
 		status,
 		notes,
 		custodian,
 		location,
-		item: {
-			connect: {
-				id: itemId,
-			},
-		},
+		itemId
 	});
 
 	res.json(event);
@@ -39,8 +37,9 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
 	const { id } = req.params;
 	const { notes, location, custodian, status } = req.body;
+	const controller = new EventController();
 
-	const event = await updateEvent(Number(id), {
+	const event = await controller.updateEvent(Number(id), {
 		status,
 		notes,
 		custodian,
@@ -53,10 +52,10 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
 	const { id } = req.params;
 
-	await deleteEvent(Number(id));
+	const controller = new EventController();
+	await controller.deleteEvent(Number(id));
 
 	res.json({ message: "Event deleted" });
 });
-
 
 export default router;

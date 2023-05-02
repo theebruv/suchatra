@@ -1,0 +1,2472 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Without_any.any_": {
+				"properties": {},
+				"type": "object"
+			},
+			"EventStatus": {
+				"type": "string",
+				"enum": [
+					"CREATED",
+					"IN_TRANSIT",
+					"DELIVERED",
+					"RETURNED",
+					"DAMAGED",
+					"LOST"
+				],
+				"description": "Enums"
+			},
+			"EventUncheckedCreateWithoutItemInput": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/EventStatus"
+					},
+					"custodian": {
+						"type": "string",
+						"nullable": true
+					},
+					"location": {
+						"type": "string",
+						"nullable": true
+					},
+					"timestamp": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"notes": {
+						"type": "string"
+					},
+					"id": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"status",
+					"notes"
+				],
+				"type": "object"
+			},
+			"EventCreateWithoutItemInput": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/EventStatus"
+					},
+					"custodian": {
+						"type": "string",
+						"nullable": true
+					},
+					"location": {
+						"type": "string",
+						"nullable": true
+					},
+					"timestamp": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"notes": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status",
+					"notes"
+				],
+				"type": "object"
+			},
+			"XOR_Enumerable_EventCreateWithoutItemInput_.Enumerable_EventUncheckedCreateWithoutItemInput__": {
+				"anyOf": [
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"$ref": "#/components/schemas/EventUncheckedCreateWithoutItemInput"
+							}
+						]
+					},
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"$ref": "#/components/schemas/EventCreateWithoutItemInput"
+							}
+						]
+					},
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/EventUncheckedCreateWithoutItemInput"
+								},
+								"type": "array"
+							}
+						]
+					},
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/EventCreateWithoutItemInput"
+								},
+								"type": "array"
+							}
+						]
+					}
+				],
+				"description": "XOR is needed to have a real mutually exclusive union type\nhttps://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types"
+			},
+			"EventWhereUniqueInput": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"type": "object"
+			},
+			"XOR_EventCreateWithoutItemInput.EventUncheckedCreateWithoutItemInput_": {
+				"anyOf": [
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"$ref": "#/components/schemas/EventUncheckedCreateWithoutItemInput"
+							}
+						]
+					},
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"$ref": "#/components/schemas/EventCreateWithoutItemInput"
+							}
+						]
+					}
+				],
+				"description": "XOR is needed to have a real mutually exclusive union type\nhttps://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types"
+			},
+			"EventCreateOrConnectWithoutItemInput": {
+				"properties": {
+					"create": {
+						"$ref": "#/components/schemas/XOR_EventCreateWithoutItemInput.EventUncheckedCreateWithoutItemInput_"
+					},
+					"where": {
+						"$ref": "#/components/schemas/EventWhereUniqueInput"
+					}
+				},
+				"required": [
+					"create",
+					"where"
+				],
+				"type": "object"
+			},
+			"Enumerable_EventCreateOrConnectWithoutItemInput_": {
+				"anyOf": [
+					{
+						"$ref": "#/components/schemas/EventCreateOrConnectWithoutItemInput"
+					},
+					{
+						"items": {
+							"$ref": "#/components/schemas/EventCreateOrConnectWithoutItemInput"
+						},
+						"type": "array"
+					}
+				]
+			},
+			"EventCreateManyItemInput": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/EventStatus"
+					},
+					"custodian": {
+						"type": "string",
+						"nullable": true
+					},
+					"location": {
+						"type": "string",
+						"nullable": true
+					},
+					"timestamp": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"notes": {
+						"type": "string"
+					},
+					"id": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"status",
+					"notes"
+				],
+				"type": "object"
+			},
+			"Enumerable_EventCreateManyItemInput_": {
+				"anyOf": [
+					{
+						"$ref": "#/components/schemas/EventCreateManyItemInput"
+					},
+					{
+						"items": {
+							"$ref": "#/components/schemas/EventCreateManyItemInput"
+						},
+						"type": "array"
+					}
+				]
+			},
+			"EventCreateManyItemInputEnvelope": {
+				"properties": {
+					"skipDuplicates": {
+						"type": "boolean"
+					},
+					"data": {
+						"$ref": "#/components/schemas/Enumerable_EventCreateManyItemInput_"
+					}
+				},
+				"required": [
+					"data"
+				],
+				"type": "object"
+			},
+			"Enumerable_EventWhereUniqueInput_": {
+				"anyOf": [
+					{
+						"$ref": "#/components/schemas/EventWhereUniqueInput"
+					},
+					{
+						"items": {
+							"$ref": "#/components/schemas/EventWhereUniqueInput"
+						},
+						"type": "array"
+					}
+				]
+			},
+			"EventCreateNestedManyWithoutItemInput": {
+				"properties": {
+					"connect": {
+						"$ref": "#/components/schemas/Enumerable_EventWhereUniqueInput_"
+					},
+					"createMany": {
+						"$ref": "#/components/schemas/EventCreateManyItemInputEnvelope"
+					},
+					"connectOrCreate": {
+						"$ref": "#/components/schemas/Enumerable_EventCreateOrConnectWithoutItemInput_"
+					},
+					"create": {
+						"$ref": "#/components/schemas/XOR_Enumerable_EventCreateWithoutItemInput_.Enumerable_EventUncheckedCreateWithoutItemInput__"
+					}
+				},
+				"type": "object"
+			},
+			"Prisma.ItemCreateInput": {
+				"properties": {
+					"events": {
+						"$ref": "#/components/schemas/EventCreateNestedManyWithoutItemInput"
+					},
+					"color": {
+						"type": "string",
+						"nullable": true
+					},
+					"price": {
+						"type": "number",
+						"format": "double"
+					},
+					"description": {
+						"type": "string",
+						"nullable": true
+					},
+					"sku": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"price",
+					"sku",
+					"name"
+				],
+				"type": "object"
+			},
+			"StringFieldUpdateOperationsInput": {
+				"properties": {
+					"set": {
+						"type": "string"
+					}
+				},
+				"type": "object"
+			},
+			"NullableStringFieldUpdateOperationsInput": {
+				"properties": {
+					"set": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"FloatFieldUpdateOperationsInput": {
+				"properties": {
+					"divide": {
+						"type": "number",
+						"format": "double"
+					},
+					"multiply": {
+						"type": "number",
+						"format": "double"
+					},
+					"decrement": {
+						"type": "number",
+						"format": "double"
+					},
+					"increment": {
+						"type": "number",
+						"format": "double"
+					},
+					"set": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"type": "object"
+			},
+			"IntFieldUpdateOperationsInput": {
+				"properties": {
+					"divide": {
+						"type": "number",
+						"format": "double"
+					},
+					"multiply": {
+						"type": "number",
+						"format": "double"
+					},
+					"decrement": {
+						"type": "number",
+						"format": "double"
+					},
+					"increment": {
+						"type": "number",
+						"format": "double"
+					},
+					"set": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"type": "object"
+			},
+			"DateTimeFieldUpdateOperationsInput": {
+				"properties": {
+					"set": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"EnumEventStatusFieldUpdateOperationsInput": {
+				"properties": {
+					"set": {
+						"$ref": "#/components/schemas/EventStatus"
+					}
+				},
+				"type": "object"
+			},
+			"EventUncheckedUpdateWithoutItemInput": {
+				"properties": {
+					"status": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/EnumEventStatusFieldUpdateOperationsInput"
+							},
+							{
+								"$ref": "#/components/schemas/EventStatus"
+							}
+						]
+					},
+					"custodian": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"location": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"timestamp": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/DateTimeFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"notes": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/IntFieldUpdateOperationsInput"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"EventUpdateWithoutItemInput": {
+				"properties": {
+					"status": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/EnumEventStatusFieldUpdateOperationsInput"
+							},
+							{
+								"$ref": "#/components/schemas/EventStatus"
+							}
+						]
+					},
+					"custodian": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"location": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"timestamp": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/DateTimeFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"notes": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"XOR_EventUpdateWithoutItemInput.EventUncheckedUpdateWithoutItemInput_": {
+				"anyOf": [
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"$ref": "#/components/schemas/EventUncheckedUpdateWithoutItemInput"
+							}
+						]
+					},
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"$ref": "#/components/schemas/EventUpdateWithoutItemInput"
+							}
+						]
+					}
+				],
+				"description": "XOR is needed to have a real mutually exclusive union type\nhttps://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types"
+			},
+			"EventUpsertWithWhereUniqueWithoutItemInput": {
+				"properties": {
+					"create": {
+						"$ref": "#/components/schemas/XOR_EventCreateWithoutItemInput.EventUncheckedCreateWithoutItemInput_"
+					},
+					"update": {
+						"$ref": "#/components/schemas/XOR_EventUpdateWithoutItemInput.EventUncheckedUpdateWithoutItemInput_"
+					},
+					"where": {
+						"$ref": "#/components/schemas/EventWhereUniqueInput"
+					}
+				},
+				"required": [
+					"create",
+					"update",
+					"where"
+				],
+				"type": "object"
+			},
+			"Enumerable_EventUpsertWithWhereUniqueWithoutItemInput_": {
+				"anyOf": [
+					{
+						"$ref": "#/components/schemas/EventUpsertWithWhereUniqueWithoutItemInput"
+					},
+					{
+						"items": {
+							"$ref": "#/components/schemas/EventUpsertWithWhereUniqueWithoutItemInput"
+						},
+						"type": "array"
+					}
+				]
+			},
+			"EventUpdateWithWhereUniqueWithoutItemInput": {
+				"properties": {
+					"data": {
+						"$ref": "#/components/schemas/XOR_EventUpdateWithoutItemInput.EventUncheckedUpdateWithoutItemInput_"
+					},
+					"where": {
+						"$ref": "#/components/schemas/EventWhereUniqueInput"
+					}
+				},
+				"required": [
+					"data",
+					"where"
+				],
+				"type": "object"
+			},
+			"Enumerable_EventUpdateWithWhereUniqueWithoutItemInput_": {
+				"anyOf": [
+					{
+						"$ref": "#/components/schemas/EventUpdateWithWhereUniqueWithoutItemInput"
+					},
+					{
+						"items": {
+							"$ref": "#/components/schemas/EventUpdateWithWhereUniqueWithoutItemInput"
+						},
+						"type": "array"
+					}
+				]
+			},
+			"EventScalarWhereInput": {
+				"properties": {
+					"itemId": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/IntNullableFilter"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						],
+						"nullable": true
+					},
+					"status": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/EnumEventStatusFilter"
+							},
+							{
+								"$ref": "#/components/schemas/EventStatus"
+							}
+						]
+					},
+					"custodian": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringNullableFilter"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"location": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringNullableFilter"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"timestamp": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/DateTimeFilter"
+							},
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"notes": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringFilter"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/IntFilter"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						]
+					},
+					"NOT": {
+						"$ref": "#/components/schemas/Enumerable_EventScalarWhereInput_"
+					},
+					"OR": {
+						"$ref": "#/components/schemas/Enumerable_EventScalarWhereInput_"
+					},
+					"AND": {
+						"$ref": "#/components/schemas/Enumerable_EventScalarWhereInput_"
+					}
+				},
+				"type": "object"
+			},
+			"Enumerable_EventScalarWhereInput_": {
+				"anyOf": [
+					{
+						"$ref": "#/components/schemas/EventScalarWhereInput"
+					},
+					{
+						"items": {
+							"$ref": "#/components/schemas/EventScalarWhereInput"
+						},
+						"type": "array"
+					}
+				]
+			},
+			"Enumerable_number_": {
+				"anyOf": [
+					{
+						"type": "number",
+						"format": "double"
+					},
+					{
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array"
+					}
+				]
+			},
+			"NestedIntFilter": {
+				"properties": {
+					"not": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NestedIntFilter"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						]
+					},
+					"gte": {
+						"type": "number",
+						"format": "double"
+					},
+					"gt": {
+						"type": "number",
+						"format": "double"
+					},
+					"lte": {
+						"type": "number",
+						"format": "double"
+					},
+					"lt": {
+						"type": "number",
+						"format": "double"
+					},
+					"notIn": {
+						"$ref": "#/components/schemas/Enumerable_number_"
+					},
+					"in": {
+						"$ref": "#/components/schemas/Enumerable_number_"
+					},
+					"equals": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"type": "object"
+			},
+			"IntFilter": {
+				"properties": {
+					"not": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NestedIntFilter"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						]
+					},
+					"gte": {
+						"type": "number",
+						"format": "double"
+					},
+					"gt": {
+						"type": "number",
+						"format": "double"
+					},
+					"lte": {
+						"type": "number",
+						"format": "double"
+					},
+					"lt": {
+						"type": "number",
+						"format": "double"
+					},
+					"notIn": {
+						"$ref": "#/components/schemas/Enumerable_number_"
+					},
+					"in": {
+						"$ref": "#/components/schemas/Enumerable_number_"
+					},
+					"equals": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"type": "object"
+			},
+			"Enumerable_string_": {
+				"anyOf": [
+					{
+						"type": "string"
+					},
+					{
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				]
+			},
+			"NestedStringFilter": {
+				"properties": {
+					"not": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NestedStringFilter"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"endsWith": {
+						"type": "string"
+					},
+					"startsWith": {
+						"type": "string"
+					},
+					"contains": {
+						"type": "string"
+					},
+					"gte": {
+						"type": "string"
+					},
+					"gt": {
+						"type": "string"
+					},
+					"lte": {
+						"type": "string"
+					},
+					"lt": {
+						"type": "string"
+					},
+					"notIn": {
+						"$ref": "#/components/schemas/Enumerable_string_"
+					},
+					"in": {
+						"$ref": "#/components/schemas/Enumerable_string_"
+					},
+					"equals": {
+						"type": "string"
+					}
+				},
+				"type": "object"
+			},
+			"StringFilter": {
+				"properties": {
+					"not": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NestedStringFilter"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"endsWith": {
+						"type": "string"
+					},
+					"startsWith": {
+						"type": "string"
+					},
+					"contains": {
+						"type": "string"
+					},
+					"gte": {
+						"type": "string"
+					},
+					"gt": {
+						"type": "string"
+					},
+					"lte": {
+						"type": "string"
+					},
+					"lt": {
+						"type": "string"
+					},
+					"notIn": {
+						"$ref": "#/components/schemas/Enumerable_string_"
+					},
+					"in": {
+						"$ref": "#/components/schemas/Enumerable_string_"
+					},
+					"equals": {
+						"type": "string"
+					}
+				},
+				"type": "object"
+			},
+			"Enumerable_Date_": {
+				"anyOf": [
+					{
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"items": {
+							"type": "string",
+							"format": "date-time"
+						},
+						"type": "array"
+					}
+				]
+			},
+			"NestedDateTimeFilter": {
+				"properties": {
+					"not": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NestedDateTimeFilter"
+							},
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"gte": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"gt": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"lte": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"lt": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"notIn": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Enumerable_Date_"
+							},
+							{
+								"$ref": "#/components/schemas/Enumerable_string_"
+							}
+						]
+					},
+					"in": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Enumerable_Date_"
+							},
+							{
+								"$ref": "#/components/schemas/Enumerable_string_"
+							}
+						]
+					},
+					"equals": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"DateTimeFilter": {
+				"properties": {
+					"not": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NestedDateTimeFilter"
+							},
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"gte": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"gt": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"lte": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"lt": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"notIn": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Enumerable_Date_"
+							},
+							{
+								"$ref": "#/components/schemas/Enumerable_string_"
+							}
+						]
+					},
+					"in": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Enumerable_Date_"
+							},
+							{
+								"$ref": "#/components/schemas/Enumerable_string_"
+							}
+						]
+					},
+					"equals": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"NestedStringNullableFilter": {
+				"properties": {
+					"not": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NestedStringNullableFilter"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"endsWith": {
+						"type": "string"
+					},
+					"startsWith": {
+						"type": "string"
+					},
+					"contains": {
+						"type": "string"
+					},
+					"gte": {
+						"type": "string"
+					},
+					"gt": {
+						"type": "string"
+					},
+					"lte": {
+						"type": "string"
+					},
+					"lt": {
+						"type": "string"
+					},
+					"notIn": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Enumerable_string_"
+							}
+						],
+						"nullable": true
+					},
+					"in": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Enumerable_string_"
+							}
+						],
+						"nullable": true
+					},
+					"equals": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"StringNullableFilter": {
+				"properties": {
+					"not": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NestedStringNullableFilter"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"endsWith": {
+						"type": "string"
+					},
+					"startsWith": {
+						"type": "string"
+					},
+					"contains": {
+						"type": "string"
+					},
+					"gte": {
+						"type": "string"
+					},
+					"gt": {
+						"type": "string"
+					},
+					"lte": {
+						"type": "string"
+					},
+					"lt": {
+						"type": "string"
+					},
+					"notIn": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Enumerable_string_"
+							}
+						],
+						"nullable": true
+					},
+					"in": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Enumerable_string_"
+							}
+						],
+						"nullable": true
+					},
+					"equals": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"Enumerable_EventStatus_": {
+				"anyOf": [
+					{
+						"$ref": "#/components/schemas/EventStatus"
+					},
+					{
+						"items": {
+							"$ref": "#/components/schemas/EventStatus"
+						},
+						"type": "array"
+					}
+				]
+			},
+			"NestedEnumEventStatusFilter": {
+				"properties": {
+					"not": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NestedEnumEventStatusFilter"
+							},
+							{
+								"$ref": "#/components/schemas/EventStatus"
+							}
+						]
+					},
+					"notIn": {
+						"$ref": "#/components/schemas/Enumerable_EventStatus_"
+					},
+					"in": {
+						"$ref": "#/components/schemas/Enumerable_EventStatus_"
+					},
+					"equals": {
+						"$ref": "#/components/schemas/EventStatus"
+					}
+				},
+				"type": "object"
+			},
+			"EnumEventStatusFilter": {
+				"properties": {
+					"not": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NestedEnumEventStatusFilter"
+							},
+							{
+								"$ref": "#/components/schemas/EventStatus"
+							}
+						]
+					},
+					"notIn": {
+						"$ref": "#/components/schemas/Enumerable_EventStatus_"
+					},
+					"in": {
+						"$ref": "#/components/schemas/Enumerable_EventStatus_"
+					},
+					"equals": {
+						"$ref": "#/components/schemas/EventStatus"
+					}
+				},
+				"type": "object"
+			},
+			"NestedIntNullableFilter": {
+				"properties": {
+					"not": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NestedIntNullableFilter"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						],
+						"nullable": true
+					},
+					"gte": {
+						"type": "number",
+						"format": "double"
+					},
+					"gt": {
+						"type": "number",
+						"format": "double"
+					},
+					"lte": {
+						"type": "number",
+						"format": "double"
+					},
+					"lt": {
+						"type": "number",
+						"format": "double"
+					},
+					"notIn": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Enumerable_number_"
+							}
+						],
+						"nullable": true
+					},
+					"in": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Enumerable_number_"
+							}
+						],
+						"nullable": true
+					},
+					"equals": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"IntNullableFilter": {
+				"properties": {
+					"not": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NestedIntNullableFilter"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						],
+						"nullable": true
+					},
+					"gte": {
+						"type": "number",
+						"format": "double"
+					},
+					"gt": {
+						"type": "number",
+						"format": "double"
+					},
+					"lte": {
+						"type": "number",
+						"format": "double"
+					},
+					"lt": {
+						"type": "number",
+						"format": "double"
+					},
+					"notIn": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Enumerable_number_"
+							}
+						],
+						"nullable": true
+					},
+					"in": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Enumerable_number_"
+							}
+						],
+						"nullable": true
+					},
+					"equals": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"EventUncheckedUpdateManyWithoutEventsInput": {
+				"properties": {
+					"status": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/EnumEventStatusFieldUpdateOperationsInput"
+							},
+							{
+								"$ref": "#/components/schemas/EventStatus"
+							}
+						]
+					},
+					"custodian": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"location": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"timestamp": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/DateTimeFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"notes": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/IntFieldUpdateOperationsInput"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"EventUpdateManyMutationInput": {
+				"properties": {
+					"status": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/EnumEventStatusFieldUpdateOperationsInput"
+							},
+							{
+								"$ref": "#/components/schemas/EventStatus"
+							}
+						]
+					},
+					"custodian": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"location": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"timestamp": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/DateTimeFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"notes": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"XOR_EventUpdateManyMutationInput.EventUncheckedUpdateManyWithoutEventsInput_": {
+				"anyOf": [
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"$ref": "#/components/schemas/EventUncheckedUpdateManyWithoutEventsInput"
+							}
+						]
+					},
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"$ref": "#/components/schemas/EventUpdateManyMutationInput"
+							}
+						]
+					}
+				],
+				"description": "XOR is needed to have a real mutually exclusive union type\nhttps://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types"
+			},
+			"EventUpdateManyWithWhereWithoutItemInput": {
+				"properties": {
+					"data": {
+						"$ref": "#/components/schemas/XOR_EventUpdateManyMutationInput.EventUncheckedUpdateManyWithoutEventsInput_"
+					},
+					"where": {
+						"$ref": "#/components/schemas/EventScalarWhereInput"
+					}
+				},
+				"required": [
+					"data",
+					"where"
+				],
+				"type": "object"
+			},
+			"Enumerable_EventUpdateManyWithWhereWithoutItemInput_": {
+				"anyOf": [
+					{
+						"$ref": "#/components/schemas/EventUpdateManyWithWhereWithoutItemInput"
+					},
+					{
+						"items": {
+							"$ref": "#/components/schemas/EventUpdateManyWithWhereWithoutItemInput"
+						},
+						"type": "array"
+					}
+				]
+			},
+			"EventUpdateManyWithoutItemNestedInput": {
+				"properties": {
+					"deleteMany": {
+						"$ref": "#/components/schemas/Enumerable_EventScalarWhereInput_"
+					},
+					"updateMany": {
+						"$ref": "#/components/schemas/Enumerable_EventUpdateManyWithWhereWithoutItemInput_"
+					},
+					"update": {
+						"$ref": "#/components/schemas/Enumerable_EventUpdateWithWhereUniqueWithoutItemInput_"
+					},
+					"connect": {
+						"$ref": "#/components/schemas/Enumerable_EventWhereUniqueInput_"
+					},
+					"delete": {
+						"$ref": "#/components/schemas/Enumerable_EventWhereUniqueInput_"
+					},
+					"disconnect": {
+						"$ref": "#/components/schemas/Enumerable_EventWhereUniqueInput_"
+					},
+					"set": {
+						"$ref": "#/components/schemas/Enumerable_EventWhereUniqueInput_"
+					},
+					"createMany": {
+						"$ref": "#/components/schemas/EventCreateManyItemInputEnvelope"
+					},
+					"upsert": {
+						"$ref": "#/components/schemas/Enumerable_EventUpsertWithWhereUniqueWithoutItemInput_"
+					},
+					"connectOrCreate": {
+						"$ref": "#/components/schemas/Enumerable_EventCreateOrConnectWithoutItemInput_"
+					},
+					"create": {
+						"$ref": "#/components/schemas/XOR_Enumerable_EventCreateWithoutItemInput_.Enumerable_EventUncheckedCreateWithoutItemInput__"
+					}
+				},
+				"type": "object"
+			},
+			"Prisma.ItemUpdateInput": {
+				"properties": {
+					"events": {
+						"$ref": "#/components/schemas/EventUpdateManyWithoutItemNestedInput"
+					},
+					"color": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"price": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/FloatFieldUpdateOperationsInput"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						]
+					},
+					"description": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"sku": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"name": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"ItemUncheckedCreateWithoutEventsInput": {
+				"properties": {
+					"color": {
+						"type": "string",
+						"nullable": true
+					},
+					"price": {
+						"type": "number",
+						"format": "double"
+					},
+					"description": {
+						"type": "string",
+						"nullable": true
+					},
+					"sku": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"id": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"price",
+					"sku",
+					"name"
+				],
+				"type": "object"
+			},
+			"ItemCreateWithoutEventsInput": {
+				"properties": {
+					"color": {
+						"type": "string",
+						"nullable": true
+					},
+					"price": {
+						"type": "number",
+						"format": "double"
+					},
+					"description": {
+						"type": "string",
+						"nullable": true
+					},
+					"sku": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"price",
+					"sku",
+					"name"
+				],
+				"type": "object"
+			},
+			"XOR_ItemCreateWithoutEventsInput.ItemUncheckedCreateWithoutEventsInput_": {
+				"anyOf": [
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"$ref": "#/components/schemas/ItemUncheckedCreateWithoutEventsInput"
+							}
+						]
+					},
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"$ref": "#/components/schemas/ItemCreateWithoutEventsInput"
+							}
+						]
+					}
+				],
+				"description": "XOR is needed to have a real mutually exclusive union type\nhttps://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types"
+			},
+			"ItemWhereUniqueInput": {
+				"properties": {
+					"sku": {
+						"type": "string"
+					},
+					"id": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"type": "object"
+			},
+			"ItemCreateOrConnectWithoutEventsInput": {
+				"properties": {
+					"create": {
+						"$ref": "#/components/schemas/XOR_ItemCreateWithoutEventsInput.ItemUncheckedCreateWithoutEventsInput_"
+					},
+					"where": {
+						"$ref": "#/components/schemas/ItemWhereUniqueInput"
+					}
+				},
+				"required": [
+					"create",
+					"where"
+				],
+				"type": "object"
+			},
+			"ItemCreateNestedOneWithoutEventsInput": {
+				"properties": {
+					"connect": {
+						"$ref": "#/components/schemas/ItemWhereUniqueInput"
+					},
+					"connectOrCreate": {
+						"$ref": "#/components/schemas/ItemCreateOrConnectWithoutEventsInput"
+					},
+					"create": {
+						"$ref": "#/components/schemas/XOR_ItemCreateWithoutEventsInput.ItemUncheckedCreateWithoutEventsInput_"
+					}
+				},
+				"type": "object"
+			},
+			"Prisma.EventCreateInput": {
+				"properties": {
+					"item": {
+						"$ref": "#/components/schemas/ItemCreateNestedOneWithoutEventsInput"
+					},
+					"status": {
+						"$ref": "#/components/schemas/EventStatus"
+					},
+					"custodian": {
+						"type": "string",
+						"nullable": true
+					},
+					"location": {
+						"type": "string",
+						"nullable": true
+					},
+					"timestamp": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"notes": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status",
+					"notes"
+				],
+				"type": "object"
+			},
+			"ItemUncheckedUpdateWithoutEventsInput": {
+				"properties": {
+					"color": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"price": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/FloatFieldUpdateOperationsInput"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						]
+					},
+					"description": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"sku": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"name": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/IntFieldUpdateOperationsInput"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"ItemUpdateWithoutEventsInput": {
+				"properties": {
+					"color": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"price": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/FloatFieldUpdateOperationsInput"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						]
+					},
+					"description": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"sku": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"name": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"XOR_ItemUpdateWithoutEventsInput.ItemUncheckedUpdateWithoutEventsInput_": {
+				"anyOf": [
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"$ref": "#/components/schemas/ItemUncheckedUpdateWithoutEventsInput"
+							}
+						]
+					},
+					{
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Without_any.any_"
+							},
+							{
+								"$ref": "#/components/schemas/ItemUpdateWithoutEventsInput"
+							}
+						]
+					}
+				],
+				"description": "XOR is needed to have a real mutually exclusive union type\nhttps://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types"
+			},
+			"ItemUpsertWithoutEventsInput": {
+				"properties": {
+					"create": {
+						"$ref": "#/components/schemas/XOR_ItemCreateWithoutEventsInput.ItemUncheckedCreateWithoutEventsInput_"
+					},
+					"update": {
+						"$ref": "#/components/schemas/XOR_ItemUpdateWithoutEventsInput.ItemUncheckedUpdateWithoutEventsInput_"
+					}
+				},
+				"required": [
+					"create",
+					"update"
+				],
+				"type": "object"
+			},
+			"ItemUpdateOneWithoutEventsNestedInput": {
+				"properties": {
+					"update": {
+						"$ref": "#/components/schemas/XOR_ItemUpdateWithoutEventsInput.ItemUncheckedUpdateWithoutEventsInput_"
+					},
+					"connect": {
+						"$ref": "#/components/schemas/ItemWhereUniqueInput"
+					},
+					"delete": {
+						"type": "boolean"
+					},
+					"disconnect": {
+						"type": "boolean"
+					},
+					"upsert": {
+						"$ref": "#/components/schemas/ItemUpsertWithoutEventsInput"
+					},
+					"connectOrCreate": {
+						"$ref": "#/components/schemas/ItemCreateOrConnectWithoutEventsInput"
+					},
+					"create": {
+						"$ref": "#/components/schemas/XOR_ItemCreateWithoutEventsInput.ItemUncheckedCreateWithoutEventsInput_"
+					}
+				},
+				"type": "object"
+			},
+			"Prisma.EventUpdateInput": {
+				"properties": {
+					"item": {
+						"$ref": "#/components/schemas/ItemUpdateOneWithoutEventsNestedInput"
+					},
+					"status": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/EnumEventStatusFieldUpdateOperationsInput"
+							},
+							{
+								"$ref": "#/components/schemas/EventStatus"
+							}
+						]
+					},
+					"custodian": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"location": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/NullableStringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						],
+						"nullable": true
+					},
+					"timestamp": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/DateTimeFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"notes": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/StringFieldUpdateOperationsInput"
+							},
+							{
+								"type": "string"
+							}
+						]
+					}
+				},
+				"type": "object"
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "suchatra-server",
+		"version": "1.0.0",
+		"license": {
+			"name": "MIT"
+		},
+		"contact": {
+			"name": "Rodgers Tanui",
+			"email": "rtankip@gmail.com"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/api/v1/items": {
+			"get": {
+				"operationId": "GetItems",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateItem",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Prisma.ItemCreateInput"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/items/{id}": {
+			"get": {
+				"operationId": "GetItem",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateItem",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Prisma.ItemUpdateInput"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteItem",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/items/track/{sku}": {
+			"get": {
+				"operationId": "TrackItem",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "sku",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/events": {
+			"get": {
+				"operationId": "GetEvents",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateEvent",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"allOf": [
+									{
+										"$ref": "#/components/schemas/Prisma.EventCreateInput"
+									},
+									{
+										"properties": {
+											"itemId": {
+												"type": "number",
+												"format": "double"
+											}
+										},
+										"required": [
+											"itemId"
+										],
+										"type": "object"
+									}
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/events/{id}": {
+			"get": {
+				"operationId": "GetEvent",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateEvent",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Prisma.EventUpdateInput"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteEvent",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

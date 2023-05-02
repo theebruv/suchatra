@@ -1,35 +1,39 @@
 import express from "express";
 import { createEvent } from "../services/event.service";
-import { getItems, getItem, trackItem, createItem, updateItem, deleteItem } from "../services/item.service";
+import { ItemController } from "../controllers/items.controller";
 
 const router = express.Router();
 
 router.get("/", async (_, res) => {
-	const items = await getItems();
+	const controller = new ItemController();
+	const items = await controller.getItems();
 
 	res.json(items);
 });
 
 router.get("/:id", async (req, res) => {
 	const { id } = req.params;
+	const controller = new ItemController();
 
-	const item = await getItem(Number(id));
+	const item = await controller.getItem(Number(id));
 
 	res.json(item);
 });
 
 router.get("/track/:sku", async (req, res) => {
 	const { sku } = req.params;
+	const controller = new ItemController();
 
-	const item = await trackItem(sku);
+	const item = await controller.trackItem(sku);
 
 	res.json(item);
 });
 
 router.post("/", async (req, res) => {
 	const { name, description, price, color } = req.body;
+	const controller = new ItemController();
 
-	const item = await createItem({
+	const item = await controller.createItem({
 		name,
 		description,
 		price: Number(price),
@@ -54,7 +58,9 @@ router.put("/:id", async (req, res) => {
 	const { id } = req.params;
 	const { name, description, price, color } = req.body;
 
-	const item = await updateItem(Number(id), {
+	const controller = new ItemController();
+
+	const item = await controller.updateItem(Number(id), {
 		name,
 		description,
 		price: Number(price),
@@ -67,7 +73,9 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
 	const { id } = req.params;
 
-	await deleteItem(Number(id));
+	const controller = new ItemController();
+
+	await controller.deleteItem(Number(id));
 
 	res.json({ message: "Item deleted" });
 });

@@ -1,14 +1,15 @@
 import express from "express";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
 
-import itemsRouter from "./routes/item.route";
-import eventsRouter from "./routes/event.route";
+import Router from "./routes";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(express.static("public"));
 
 app.get(`/`, async (_, res) => {
 	res.json({
@@ -17,7 +18,16 @@ app.get(`/`, async (_, res) => {
 	});
 });
 
-app.use(`/api/v1/items`, itemsRouter);
-app.use(`/api/v1/events`, eventsRouter);
+app.use(
+	"/docs",
+	swaggerUi.serve,
+	swaggerUi.setup(undefined, {
+		swaggerOptions: {
+			url: "/swagger.json",
+		},
+	})
+);
+
+app.use(Router);
 
 app.listen(4000, () => console.log(`🚀 Server ready at: http://localhost:4000`));
