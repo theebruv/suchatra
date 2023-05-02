@@ -11,7 +11,7 @@ const App = () => {
 				<Heading as='h1' size='md'>
 					Suchatra
 				</Heading>
-				<Text>Supply Chain Track and Trace System</Text>
+				<Text textAlign='center'>Supply Chain Track and Trace System</Text>
 			</Flex>
 			<Routes>
 				<Route path='/' element={<ItemsPage />} />

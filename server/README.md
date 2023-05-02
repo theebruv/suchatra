@@ -40,4 +40,4 @@ You can now run the API requests
 
 ## Using the REST API
 
-You can access the REST API of the server using the following endpoints:
+You can access the REST API of the server by opening `http://localhost:4000/docs` in your browser.

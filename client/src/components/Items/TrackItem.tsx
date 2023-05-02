@@ -1,4 +1,4 @@
-import { Box, Button, Flex, FormControl, Input, useToast } from "@chakra-ui/react";
+import { Box, Button, Flex, FormControl, Input, useMediaQuery, useToast } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -7,6 +7,7 @@ import { trackItem } from "../../apis/itemsService";
 export const TrackItem = () => {
 	const navigate = useNavigate();
 	const toast = useToast();
+	const [isSmallScreen] = useMediaQuery("(max-width: 540px)");
 
 	const formik = useFormik({
 		initialValues: {
@@ -31,7 +32,7 @@ export const TrackItem = () => {
 				} else {
 					toast({
 						title: "Item Not Found",
-						description: "Item with that tracking number was not found. Please try again.",
+						description: "Item with that tracking number was not found.",
 						status: "info",
 						duration: 9000,
 						isClosable: true,
@@ -44,8 +45,8 @@ export const TrackItem = () => {
 	return (
 		<Box py={6}>
 			<form onSubmit={formik.handleSubmit}>
-				<Flex direction='row' alignItems='center' justifyContent='center' gap={4}>
-					<FormControl isInvalid={!!formik.errors.trackingNumber} maxWidth='400px'>
+				<Flex direction={isSmallScreen ? "column" : "row"} alignItems='center' justifyContent='center' gap={4}>
+					<FormControl isInvalid={!!formik.errors.trackingNumber} maxWidth='540px'>
 						<Input
 							id='trackingNumber'
 							name='trackingNumber'
@@ -55,7 +56,7 @@ export const TrackItem = () => {
 							placeholder='Enter Tracking Number'
 						/>
 					</FormControl>
-					<Button minWidth={"200px"} type='submit'>
+					<Button minWidth={isSmallScreen ? "100%" : "200px"} type='submit'>
 						Track Item
 					</Button>
 				</Flex>
