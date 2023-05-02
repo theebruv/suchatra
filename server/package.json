@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "yarn prisma:dev && nodemon src/index.ts",
-    "start": "ts-node src/index.ts",
+    "start": "yarn prisma:dev && ts-node src/index.ts",
     "prisma:dev": "yarn prisma generate && yarn prisma migrate dev",
     "prisma:seed": "yarn prisma db seed"
   },

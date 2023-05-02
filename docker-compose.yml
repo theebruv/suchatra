@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:8
+    restart: always
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: suchatra
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+
+  backend:
+    build: ./server
+    ports:
+      - 4000:4000
+    expose:
+      - 4000
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=mysql://root:password@db:3306/suchatra
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:4000/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - my_app_net
+ 
+
+  frontend:
+    build: ./client
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    networks:
+      - my_app_net
+
+networks:
+  my_app_net:
+    driver: bridge
+
+volumes:
+  db_data:

@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
 	const { id } = req.params;
-	const { notes, location, custodian, status, itemId } = req.body;
+	const { notes, location, custodian, status } = req.body;
 
 	const event = await updateEvent(Number(id), {
 		status,

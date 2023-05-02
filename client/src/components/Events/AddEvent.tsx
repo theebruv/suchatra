@@ -4,7 +4,7 @@ import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Sel
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { createEvent } from "../../apis/eventService";
-import { eventStatuses } from "../../constants";
+import { EventStatus, eventStatuses } from "../../constants";
 
 interface AddEventProps {
 	itemId: number;
@@ -16,7 +16,7 @@ export const AddEvent: FC<AddEventProps> = ({ itemId, refetch, onClose }) => {
 	const toast = useToast();
 
 	const initialValues = {
-		status: "",
+		status: "" as EventStatus,
 		notes: "",
 		location: "",
 		custodian: "",

@@ -2,10 +2,11 @@ import axiosInstance from "./axiosInstance";
 
 type CreateItemInput = {
 	name: string;
-	sku: string;
+	sku?: string;
 	description?: string | null;
 	price: number;
 	color?: string | null;
+	
 };
 export const getItems = async () => {
 	return await axiosInstance.get(`/items`);

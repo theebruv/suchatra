@@ -7,6 +7,7 @@ type EventCreateInput = {
 	location?: string | null;
 	custodian?: string | null;
 	status: EventStatus;
+	itemId?: number;
 };
 
 export const getEvents = async () => {

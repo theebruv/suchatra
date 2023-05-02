@@ -4,7 +4,7 @@ import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Sel
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { updateEvent } from "../../apis/eventService";
-import { eventStatuses } from "../../constants";
+import { EventStatus, eventStatuses } from "../../constants";
 import { TEvent } from "./Events";
 
 interface EditEventProps {
@@ -18,7 +18,7 @@ export const EditEvent: FC<EditEventProps> = ({ event, itemId, refetch, onClose 
 	const toast = useToast();
 
 	const initialValues = {
-		status: event?.status || "",
+		status: (event?.status || "") as EventStatus,
 		notes: event?.notes || "",
 		location: event?.location || "",
 		custodian: event?.custodian || "",
